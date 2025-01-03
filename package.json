@@ -1,0 +1,17 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "I am making hello World using express",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "return",
+    "dev": "node --watch server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
