@@ -1,22 +1,25 @@
-import express, { response } from "express";
+import express from "express";
 const app = express();
 const port = process.env.PORT || 3000;
 import cors from "cors";
-app.use(cors());
 
 const todos = [];
 
 app.use(express.json());
 
+app.use(
+  cors({ origin: ["http://localhost:5173", "https://frontend.surge.sh"] })
+);
+
 //yaha sare todos store honge
-app.get("/get-all-todos", (req, res) => {
+app.get("/api/v1/todos", (req, res) => {
   const message = !todos.length ? "todos empty" : "here your todos";
 
   res.send({ data: todos, message: message });
 });
 
 //yaha ek todo milega
-app.post("/add-todo", (req, res) => {
+app.post("/api/v1/todo", (req, res) => {
   const obj = {
     todoContent: req.body.todo,
     id: String(new Date().getTime()),
@@ -27,7 +30,7 @@ app.post("/add-todo", (req, res) => {
 });
 
 //yaha ek todo update hoga
-app.patch("/update-todo/:id", (req, res) => {
+app.patch("/api/v1/todo/:id", (req, res) => {
   const id = req.params.id; //id of todo to be updated
 
   let isFound = false; //flag to check if todo is found or not
@@ -52,7 +55,7 @@ app.patch("/update-todo/:id", (req, res) => {
 
 //yaha ek todo delete hoga
 
-app.delete("/delete-todo/:id", (req, res) => {
+app.delete("/api/v1/todo/:id", (req, res) => {
   const id = req.params.id;
 
   let isFound = false;
