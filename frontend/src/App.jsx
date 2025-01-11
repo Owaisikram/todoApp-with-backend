@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { response } from "express";
 
 export default function App() {
-  const BASE_URL = "http://localhost:3000";
+  const BASEE_URL = "http://localhost:3000";
 
   const [todos, setTodos] = useState([]);
 
   const getTodo = async () => {
-    const res = await axios(`${BASE_URL}/api/v1/todos`);
+    const res = await axios(`${BASEE_URL}/api/v1/todos`);
     const todosFromServer = response?.data?.data;
     console.log("todosFromServer ", todosFromServer);
 
@@ -26,7 +26,7 @@ export default function App() {
 
       const todoValue = event.target.children[0].value;
 
-      await axios.post(`${BASE_URL}/api/v1/todo`, {
+      await axios.post(`${BASEE_URL}/api/v1/todo`, {
         todo: todoValue,
       });
       getTodo();
